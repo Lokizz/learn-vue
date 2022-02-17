@@ -20,7 +20,7 @@
   const clickByPatchMethod = () => {
     store.$patch(state => {
       state.count++
-      state.helloWorld = 'Hello world changed!'
+      state.helloWorld = state.helloWorld === 'From Pinia: Hello World!' ? 'Hello world changed!' : 'From Pinia: Hello World!'
     })
   }
 

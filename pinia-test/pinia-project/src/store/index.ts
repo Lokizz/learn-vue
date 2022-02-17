@@ -30,7 +30,7 @@ export const mainStore = defineStore('main', {
   actions: {
     changeState() {
       this.count++
-      this.helloWorld = 'Hello world!'
+      this.helloWorld = this.helloWorld === 'From Pinia: Hello World!' ? 'Hello world changed!' : 'From Pinia: Hello World!'
     },
     getListOutside() {
       console.log(anotherStore().list)
