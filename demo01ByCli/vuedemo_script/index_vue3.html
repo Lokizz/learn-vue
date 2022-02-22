@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .container {
+      outline: 1px solid lightcoral;
+      padding: 3rem;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div id="app" v-cloak>
+      Vue content: {{ msg }}
+    </div>
+    The original text content outside the vue mounted element.
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  
+  <script>
+    let vm = Vue.createApp({
+      data() {
+        return {
+          msg: 'hello vue',
+        }
+      },
+      template: '<span style="color:red;">THIS CONTENT IS RED.</span>'
+    }).mount("#app")
+  </script>
+</body>
+</html>
