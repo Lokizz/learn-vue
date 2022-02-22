@@ -1,0 +1,14 @@
+.container {
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.container h2:not(h2:first-child) {
+  border-top: 1px solid lightcoral;
+  padding-top: 3rem;
+}
+
+.container h2,
+.container h3 {
+  text-align: center;
+}
