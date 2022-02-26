@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List Demo by Vue</title>
+</head>
+<body>
+  <h2>Todo List Demo</h2>
+  <div id="app">
+    <form>
+      <input type="text" v-model="newInput" placeholder="请输入需要添加的项目">
+      <button @click.prevent="addHandler">添加</button>
+      <ul>
+        <li 
+          v-for="(item, idx) of todoList" 
+          :key="item.timeStamp" 
+          v-if="!isEditing">
+          {{ item.content }}
+          <button @click.prevent="changeHandler(item.timeStamp)">修改</button>
+          <button @click.prevent="deleteHandler(item.timeStamp)">删除</button>
+        </li>
+        <li v-else>
+          <input type="text" v-model="editInput" >
+          <button @click.prevent="changeHandler(item.timestamp)">确认</button>
+          <button @click.prevent="cancelHandler(item.timestamp)">取消</button>
+        </li>
+      </ul>
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="app.js"></script>
+</body>
+</html>
