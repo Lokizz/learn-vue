@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revue Todo List Demo</title>
+</head>
+<body>
+  <div id="app">
+    <form @submit.prevent>
+      <p>
+        <button @click="changeShow('all')">全部</button>
+        <button @click="changeShow('incomplete')">未完成</button>
+        <button @click="changeShow('done')">完成</button>
+      </p>
+      <p>
+        <input type="text" v-model="inputText"
+         @compositionstart="cstartHandler"
+         @compositionend="cendHandler"
+         @keyup.enter.prevent="inputHandler">
+      </p>
+      <ul>
+        <li v-for="(item, idx) in filterList" :key="item.timestamp">
+          <template v-if="editing === item">
+            <input type="text" v-model="editingText">
+            <button @click="completeHandler">完成</button>
+            <button @click="cancelHandler">取消</button>
+          </template>
+          <template v-else>
+            <!-- ? 是否完成 -->
+            <input type="checkbox" v-model="item.status">
+            {{ item.content }}
+            <button @click="editHandler(item)">修改</button>
+            <button @click="deleteHandler(item)">删除</button>
+          </template>
+          
+        </li>
+      </ul>
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="revue-todo-demo.js"></script>
+</body>
+</html>

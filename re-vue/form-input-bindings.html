@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form input Bindings</title>
+</head>
+<body>
+  <div id="app">
+    <p v-for="(item, idx) in checkList" :key="idx">
+      <input type="checkbox" v-model="check" :value="item" />
+      <label>{{ item }}</label>
+    </p>
+    <select v-model="selected">
+      <!-- 如果是必选则设置预选项为 disabled，如果非必选则不用设置 -->
+      <option disabled value="">请选择一个选项</option>
+      <!-- 如果没有设置 value 属性，则自动将选项内容设置为 value 存入 vue 中 -->
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+    </select>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        checkList: ['loki', 'pinky', 'eric'],
+        check: [],
+        // 如果数据是不存在的选项，画面渲染会显示空白选项
+        selected: 'loki'
+      },
+
+    })
+  </script>
+</body>
+</html>
