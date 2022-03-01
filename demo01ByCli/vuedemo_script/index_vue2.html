@@ -26,7 +26,16 @@
         <!-- methods: {{ reversedMsg1() }}
         methods: {{ reversedMsg1() }} -->
       </p>
-    </div>
+
+      <ul>
+        <li v-for="item,idx in filterList" :key="idx">
+          {{ item }}
+        </li>
+      </ul>
+      <button @click="changeItem">
+        点击更改第一个 item 的值
+      </button>
+
     </div>
   </div>
 
@@ -36,19 +45,31 @@
     let vm = new Vue({
       el: "#app",
       data: {
-        msg: 'hello vue'
+        msg: 'hello vue',
+        testList: [
+          'loki',
+          'pinky'
+        ]
       },
       // template: '<span style="color:red;">THIS CONTENT IS RED.</span>',
       computed: {
         reversedMsg() {
           console.log("computed is fired.")
           return this.msg.split('').reverse().join('')
+        },
+        filterList() {
+          return this.testList.filter(item => {
+            return item.indexOf('loki') === -1
+          })
         }
       },
       methods: {
         reversedMsg1() {
           console.log("method is fired.")
           return this.msg.split('').reverse().join('')
+        },
+        changeItem() {
+          this.testList[0] = 'hello vue'
         }
       }
     })

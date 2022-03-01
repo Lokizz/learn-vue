@@ -16,7 +16,24 @@
   <div class="container">
     <div id="app" v-cloak>
       Vue content: {{ msg }}
+      <template v-if="show">
+        <p>V-if text content.</p>
+      </template>
+      <template v-else>
+        <p>Else text content.</p>
+      </template>
+
+      <ul>
+        <li v-for="item,idx in filterList" :key="idx">
+          {{ item }}
+        </li>
+      </ul>
+      <button @click="changeItem">
+        点击更改第一个 item 的值
+      </button>
+      <input type="text" @keyup="upHandler">显示$event的 key 和 code 的区别
     </div>
+
     The original text content outside the vue mounted element.
   </div>
 
@@ -27,9 +44,31 @@
       data() {
         return {
           msg: 'hello vue',
+          show: false,
+          testList: [
+            'loki',
+            'pinky',
+            'eric'
+          ],
         }
       },
-      template: '<span style="color:red;">THIS CONTENT IS RED.</span>'
+      computed: {
+        filterList() {
+          return this.testList.filter((item) => {
+            return item.indexOf('l') === -1
+          })
+        }
+      },
+      methods: {
+        changeItem(evt) {
+          this.testList[0] = 'vue'
+          console.log(evt, evt.srcElement)
+        },
+        upHandler(evt) {
+          console.log(evt.code, evt.key)
+        }
+      }
+      // template: '<span style="color:red;">THIS CONTENT IS RED.</span>'
     }).mount("#app")
   </script>
 </body>
