@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Re Todo List Demo</title>
+</head>
+<body>
+  <div class="container">
+    <div id="app" v-cloak>
+      <input-component @custom-input="inputHandler">
+      </input-component>
+      <filter-component @show-filter="changeShow">
+      </filter-component>
+      <ul>
+        <li is="vue:list-item-component" 
+          v-for="(item, idx) of filteredList" :key="idx" 
+          :item="item" 
+          :editing="editing" 
+          @change="changeHandler"
+          @edit="editHandler" 
+          @delete="deleteHandler" 
+          @complete="completeHandler" 
+          @cancel="cancelHandler" 
+        >
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="re-todo.js"></script>
+</body>
+</html>

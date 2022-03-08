@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revue Components Usage</title>
+</head>
+<body>
+  <div id="app">
+    <form @submit.prevent>
+      <!-- <input-component 
+      v-model="inputText" 
+      @custom-input="inputHandler">
+      </input-component> -->
+      <input-component2 
+      @custom-input="inputHandler2">
+      </input-component2>
+      <filter-component @show-filter="changeShow"></filter-component>
+      <ul>
+        <li is="vue:list-item-component" 
+        v-for="item of filterList" 
+        :key="item.timestamp"
+        :item="item"
+        :editing="editing"
+        @change="changeHandler"
+        @delete="deleteHandler"
+        @edit="editHandler"
+        @complete="completeHandler"
+        @cancel="cancelHandler"
+        ></li>
+      </ul>
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="revue-components.js"></script>
+</body>
+</html>
