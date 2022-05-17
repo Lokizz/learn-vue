@@ -29,6 +29,17 @@ const onActionClick = () => {
 const fetchStoreClick = () => {
   store.testData()
 }
+// * 直接更换 store 的数据
+const modifyStore = () => {
+  store.$state = {
+    count: 999999,
+    msg: '使用 store.$state 直接修改 store 的数据'
+  }
+}
+// * 重置 store 的数据
+const resetStore = () => {
+  store.$reset()
+}
 </script>
 
 <template>
@@ -49,6 +60,15 @@ const fetchStoreClick = () => {
   <p>{{ store.externalMsg }}</p>
   <button @click="fetchStoreClick">
     调用 testStore 的数据
+  </button>
+
+  <p>直接替换 store 的数据</p>
+  <button @click="modifyStore">
+    使用 store.$state 更换整个 state
+  </button>
+  <p>重置 store 的数据</p>
+  <button @click="resetStore">
+    使用 store.$reset 重置数据
   </button>
 </template>
 
